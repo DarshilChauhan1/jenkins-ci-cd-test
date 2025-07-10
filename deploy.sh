@@ -1,0 +1,1 @@
+scp -i "jenkins-test.pem" -r ./initializa.sh ubuntu@15.206.205.215:/home/ubuntu/app

@@ -1,25 +1,28 @@
 #!/bin/bash
 
-# docker network create jenkins
+# Check if the network exists, if not create it
+# if ! docker network inspect jenkins >/dev/null 2>&1; then
+#   docker network create jenkins
+# fi    
 
-docker run \
-  --name jenkins-docker \
-  --rm \
-  --detach \
-  --privileged \
-  --network jenkins \
-  --network-alias docker \
-  --env DOCKER_TLS_CERTDIR=/certs \
-  --volume jenkins-docker-certs:/certs/client \
-  --volume jenkins-data:/var/jenkins_home \
-  --publish 2376:2376 \
-  --publish 3000:3000 \
-  docker:dind \
-  --storage-driver overlay2
+# docker run \
+#   --name jenkins-docker \
+#   --rm \
+#   --detach \
+#   --privileged \
+#   --network jenkins \
+#   --network-alias docker \
+#   --env DOCKER_TLS_CERTDIR=/certs \
+#   --volume jenkins-docker-certs:/certs/client \
+#   --volume jenkins-data:/var/jenkins_home \
+#   --publish 2376:2376 \
+#   --publish 3000:3000 \
+#   docker:dind \
+#   --storage-driver overlay2
+
+docker rm jenkins-blueocean || true
 
 docker build -t myjenkins-blueocean:2.504.3-1 .
-
-docker remove jenkins-blueocean || true
 
 docker run --name jenkins-blueocean --restart=on-failure --detach \
   --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
