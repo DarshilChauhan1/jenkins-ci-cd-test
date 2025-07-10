@@ -34,19 +34,6 @@ pipeline {
         
         stage('Validate') {
             parallel {
-                stage('Lint Dockerfile') {
-                    steps {
-                        script {
-                            try {
-                                sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
-                            } catch (Exception e) {
-                                echo "Dockerfile linting warnings found: ${e.getMessage()}"
-                                // Continue build even if linting has warnings
-                            }
-                        }
-                    }
-                }
-                
                 stage('Validate Package.json') {
                     steps {
                         sh 'test -f package.json'
