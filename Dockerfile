@@ -20,6 +20,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
+RUN npm i -g @nestjs/cli
+
 # Install only production dependencies
 RUN npm install --only=production
 
