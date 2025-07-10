@@ -9,7 +9,7 @@ pipeline {
     }
     
     tools {
-        nodejs "${NODE_VERSION}"
+        nodejs 'node-22'
     }
     
     stages {
