@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# docker network create jenkins
+docker network create jenkins
 
 docker run \
   --name jenkins-docker \
