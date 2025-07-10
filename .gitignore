@@ -3,6 +3,7 @@
 /node_modules
 /build
 *.pem
+deploy.sh
 # Logs
 logs
 *.log
